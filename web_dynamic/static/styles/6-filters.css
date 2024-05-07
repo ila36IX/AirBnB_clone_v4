@@ -40,6 +40,11 @@ button:hover {
     margin-top: 0;
     font-weight: 400;
     font-size: 14px;
+		height:16px;
+		text-overflow: ellipsis;
+		overflow: hidden;
+		white-space: nowrap;
+
 }
 .locations {
     height: 100%;
@@ -60,12 +65,15 @@ button:hover {
     padding-bottom: 15px;
     height: 300px;
     overflow-y: scroll;
-    scrollbar-width: none;
     max-height: 300px;
 }
 
 .popover::-webkit-scrollbar{
-    width: 0px;
+  width: 7px;
+}
+
+.popover::-webkit-scrollbar-thumb {
+  background: #FF5A5F;
 }
 
 .amenities .popover {

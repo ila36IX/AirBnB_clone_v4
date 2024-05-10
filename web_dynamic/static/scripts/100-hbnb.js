@@ -1,16 +1,31 @@
 const checklist = {};
+const checkedStates = {};
+const checkedCities = {};
 
 $(() => {
   const amenityh4 = $('.amenities h4');
+	const checkedStatesIndecator = $(".locations h4")
 
-  $('.amenities input[type="checkbox"]:checked').each(function () {
+  $('.amenities input:checked').each(function () {
     checklist[this.dataset.id] = this.dataset.name;
   });
+  $('.locations input[name="city"]:checked').each(function () {
+    checkedCities[this.dataset.id] = this.dataset.name;
+  });
+  $('.locations input[name="state"]:checked').each(function () {
+    checkedStates[this.dataset.id] = this.dataset.name;
+  });
   $('.no-places-container').addClass('hide');
+
   updatePlaces();
 	showApiStatus();
 
-  amenityh4.text(Object.values(checklist).join(', '));
+  amenityh4
+		.text(Object.values(checklist)
+		.join(', '));
+  checkedStatesIndecator
+		.text(Object.values({...checkedStates, ...checkedCities})
+		.join(', '));
 
   $('.amenities input').on('change', function () {
     if ($(this).is(':checked')) {
@@ -21,6 +36,25 @@ $(() => {
     amenityh4.text(Object.values(checklist).join(', '));
     updatePlaces();
   });
+
+	$('.locations input[name="state"]').on('change', function() {
+    if ($(this).is(':checked')) {
+      checkedStates[this.dataset.id] = this.dataset.name;
+    } else {
+      delete checkedStates[this.dataset.id];
+    }
+    checkedStatesIndecator.text(Object.values({...checkedStates, ...checkedCities}).join(', '));
+    updatePlaces();
+	});
+	$('.locations input[name="city"]').on('change', function() {
+    if ($(this).is(':checked')) {
+      checkedCities[this.dataset.id] = this.dataset.name;
+    } else {
+      delete checkedCities[this.dataset.id];
+    }
+    checkedStatesIndecator.text(Object.values({...checkedStates, ...checkedCities}).join(', '));
+    updatePlaces();
+	});
 });
 
 function showApiStatus() {
@@ -32,7 +66,7 @@ function showApiStatus() {
 }
 
 const placeComponent = (place) => {
-	return `<article>
+  return `<article>
 <div class="title_box"><h2>${place.name}</h2><div class="price_by_night">$${place.price_by_night}</div></div>
 <div class="information">
 <div class="max_guest">${place.max_guest} Guest${place.max_guest != 1 && 's' || ''}</div>
@@ -59,10 +93,15 @@ function updatePlaces () {
 			$('.no-places-container').removeClass('hide');
 		}
 	}
+	const filters = {
+		amenities: Object.keys(checklist),
+		cities: Object.keys(checkedCities),
+		states: Object.keys(checkedStates)
+	}
 	$.ajax({
 		url: 'http://localhost:5001/api/v1/places_search',
 		type: 'POST',
-		data: JSON.stringify({ amenities: Object.keys(checklist) }),
+		data: JSON.stringify(filters),
 		dataType: 'json',
 		contentType: 'application/json',
 		success: (data) => onSuccess(data)

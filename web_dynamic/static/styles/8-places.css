@@ -99,3 +99,66 @@
 .user {
   margin-bottom: 1.5%;
 }
+.no-places {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.no-places-container img {
+	width: 300px;
+}
+.no-places-container {
+	display: flex;
+	justify-content: center;
+	flex-direction: column;
+	align-items: center;
+}
+
+.hide {
+	display: none;
+}
+
+.reviews h2 {
+	display: flex;
+	justify-content: space-between;
+	margin-block: 20px;
+	font-size: 16px;
+	text-align: start;
+	padding-bottom: 4px;
+	border-bottom: solid #DDDDDD 1px;
+}
+
+.reviews button {
+    font-size: 15px;
+		background-color: #fff;
+		color: #484848;
+    border-style: none;
+		box-sizing: border-box;
+}
+.reviews button:hover {
+	color: #FF5A5F;
+	opacity: 1;
+	cursor: pointer;
+}
+
+.reviews ul {
+	list-style: none;
+}
+
+.review h3 {
+	padding: 0;
+	margin: 0;
+}
+.review > span {
+	font-size: 12px;
+}
+
+.review {
+	border-bottom: solid #DDD 2px;
+	margin-bottom: 1rem;
+}
+
+.review:last-child{
+	border: none;
+	background-color: red;
+}

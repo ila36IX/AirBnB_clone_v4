@@ -185,7 +185,6 @@ def cites_stateid(states_id):
         state = storage.get(State, state_id)
         if state:
             cities.extend(state.cities)
-    print(cities)
     return cities
 
 
@@ -204,7 +203,6 @@ def places_cities(cities):
     places = []
     for city in cities:
         places.extend(city.places)
-    print(places)
     return places
 
 

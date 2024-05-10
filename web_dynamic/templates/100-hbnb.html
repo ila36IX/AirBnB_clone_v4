@@ -9,7 +9,7 @@
 		<link type="text/css" rel="stylesheet" href="../static/styles/8-places.css?{{ cache_id }}" />
 		<link rel="icon" href="../static/images/icon.png?{{ cache_id }}" />
 		<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-		<script src="../static/scripts/4-hbnb.js?{{ cache_id }}"></script>
+		<script src="../static/scripts/100-hbnb.js?{{ cache_id }}"></script>
 		<title>HBnB</title>
 	</head>
 	<body>
@@ -26,10 +26,18 @@
 						<ul>
 							{% for state in states %}
 							<li>
-								<h2>{{ state[0].name }}</h2>
+								<h2>
+									<label for="{{ state[0].id }}">
+										{{ state[0].name }}
+									</label>
+									<input type="checkbox" id="{{state[0].id}}" name="state" data-id="{{ state[0].id }}" data-name="{{ state[0].name }}" />
+								</h2>
 								<ul>
 									{% for city in state[1] %}
-									<li>{{ city.name }}</li>
+									<li>
+										<input type="checkbox" id="{{ city.id }}" name="city" data-id="{{ city.id }}" data-name="{{ city.name }}" />
+										<label for="{{ city.id }}">{{ city.name }}</label>
+									</li>
 									{% endfor %}
 								</ul>
 							</li>
@@ -58,6 +66,10 @@
 			<div class="placesh1">
 			<h1>Places<span class="num-places">0</span></h1>
 				<div class="no-places-container">
+					<img src="../static/images/not_found.png" alt="Cute dog">
+					<h2 class="no-places">No places found!</h2>
+				</div>
+				<div class="no-responce-container">
 					<img src="../static/images/not_found.png" alt="Cute dog">
 					<h2 class="no-places">No places found!</h2>
 				</div>

@@ -106,7 +106,7 @@ const placeComponent = (place) => {
 };
 
 function review(reviewObj){
-	let user_name = "...";
+	let user_name = '<img width="15px" src="../static/images/comments_loading.gif"/>';
 
 	$.ajax({
 		url: `http://localhost:5001/api/v1/users/${reviewObj.user_id}`,
@@ -120,9 +120,9 @@ function review(reviewObj){
 	});
 	const date = new Date(Date.parse(reviewObj.updated_at));
 	const formattedDate = new Date(date).toLocaleDateString('en-US', {
-    day: '2-digit',
-    month: 'short',
-    year: 'numeric'
+		day: '2-digit',
+		month: 'short',
+		year: 'numeric'
 	});
 	return `
 		<li class="review">

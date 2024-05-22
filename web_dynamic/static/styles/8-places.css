@@ -162,3 +162,40 @@
 	border: none;
 	background-color: red;
 }
+.places .skeleton {
+    opacity: .7;
+    animation: skeleton-loading 1s linear infinite alternate;
+}
+
+@keyframes skeleton-loading {
+    0% {
+        background-color: hsl(200, 20%, 70%);
+    }
+
+    100% {
+        background-color: hsl(200, 20%, 95%);
+    }
+}
+
+.skeleton-text-container {
+    width: 100%;
+}
+
+.skeleton-text {
+    border-radius: 5px;
+    height: 1rem;
+    margin-bottom: .5rem;
+}
+
+.skeleton-text:last-child {
+    width: 75%;
+}
+
+.skeleton-circle {
+    margin-top: 0.5rem;
+    border: none;
+}
+
+.places .place-skeleton {
+    border: none;
+}
